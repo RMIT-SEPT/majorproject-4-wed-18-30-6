@@ -27,8 +27,9 @@ public class UserController {
         if (repo.findByEmail(user.email) != null) {
             return new ResponseEntity<String>("email already exists", HttpStatus.BAD_REQUEST);
         } else {
-            User res = repo.insert(user);
-            return new ResponseEntity<String>(res.id, HttpStatus.OK);
+            // User res = repo.save(new);
+            repo.save(new User(user.firstname, user.lastname, user.username, user.password, user.role, user.email));
+            return new ResponseEntity<String>("register success", HttpStatus.OK);
         }
     }
 
@@ -47,10 +48,10 @@ public class UserController {
 
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody User user) {
-        repo.save(user);
-        return new ResponseEntity<>("Updated", HttpStatus.OK);
-    }
+    // @PostMapping("/save")
+    // public ResponseEntity<String> save(@RequestBody User user) {
+    //     repo.save(user);
+    //     return new ResponseEntity<>("Updated", HttpStatus.OK);
+    // }
 
 }
