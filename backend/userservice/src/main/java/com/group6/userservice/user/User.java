@@ -22,7 +22,7 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
+    public String getUsername() {
         return this.username;
     }
 

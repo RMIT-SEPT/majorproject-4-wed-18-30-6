@@ -16,8 +16,21 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-    public String saveUserDetails(User user) throws InterruptedException, ExecutionException {
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getName()).set(user);
+    public String login(String username, String pass) throws ExecutionException, InterruptedException {
+        ApiFuture<DocumentSnapshot> apiFuture = dbFirestore.collection("users").document(username).get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
+        User log = documentSnapshot.toObject(User.class);
+
+        if(log.password == pass){
+            return documentSnapshot.getUpdateTime().toString();
+        } else {
+            return "Wrong username/password";
+        }
+        
+    }
+
+    public String register(User user) throws InterruptedException, ExecutionException {
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getUsername()).set(user);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
@@ -33,7 +46,7 @@ public class AuthService {
             user = document.toObject(User.class);
             return user;
         } else {
-            return null;
+            return user;
         }
     }
 }

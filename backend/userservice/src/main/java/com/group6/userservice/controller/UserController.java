@@ -30,36 +30,15 @@ public class UserController {
         return firebaseSerivce.getUserDetail(username);        
     }
 
-    // @PostMapping("/register")
-    // public ResponseEntity<String> register(@RequestBody User user) {
-    //     if (repo.findByEmail(user.email) != null) {
-    //         return new ResponseEntity<String>("email already exists", HttpStatus.BAD_REQUEST);
-    //     } else {
-    //         // User res = repo.save(new);
-    //         repo.save(new User(user.firstname, user.lastname, user.username, user.password, user.role, user.email));
-    //         return new ResponseEntity<String>("register success", HttpStatus.OK);
-    //     }
-    // }
+    @PostMapping("/register")
+    public String registerEndpoint(@RequestBody User user) throws InterruptedException, ExecutionException{
+        return firebaseSerivce.register(user);
+    }
 
-    // @PostMapping("/login")
-    // public ResponseEntity<?> login(@RequestBody User user) {
-    //     User res = repo.findByEmail(user.email);
-    //     if (res != null) {
-    //         if (res.password.equals(user.password)) {
-    //             return new ResponseEntity<>(res, HttpStatus.OK);
-    //         } else {
-    //             return new ResponseEntity<>("Wrong password", HttpStatus.BAD_REQUEST);
-    //         }
-    //     } else {
-    //         return new ResponseEntity<>("Wrong email", HttpStatus.BAD_REQUEST);
-    //     }
+    @PostMapping("/login")
+    public String loginEndpoint(@RequestBody String username, String pass) throws InterruptedException, ExecutionException{
+        return firebaseSerivce.login(username, pass);
+    }
 
-    // }
-
-    // @PostMapping("/save")
-    // public ResponseEntity<String> save(@RequestBody User user) {
-    //     repo.save(user);
-    //     return new ResponseEntity<>("Updated", HttpStatus.OK);
-    // }
 
 }
