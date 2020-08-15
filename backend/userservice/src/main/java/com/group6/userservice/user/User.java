@@ -13,6 +13,11 @@ public class User {
     public User() {
     }
 
+    public User(String name, String pass, String role){
+        this.username = name;
+        this.password = pass;
+        this.role = role;
+    }
     public User(String firstname, String lastname, String name, String pass, String role, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
