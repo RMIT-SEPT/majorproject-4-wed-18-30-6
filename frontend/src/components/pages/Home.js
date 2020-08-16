@@ -21,7 +21,7 @@ const Home = () => {
       </div>
 
       <div className='content'>
-        <h2>
+        <h2 className='transform'>
           <span className='big'>{"O"}</span>
           <span className='small'>{"ur "}</span>
           <span className='big'>{"S"}</span>

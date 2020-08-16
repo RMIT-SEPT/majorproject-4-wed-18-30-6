@@ -1,11 +1,4 @@
 /* Global Styles */
-:root {
-  --primary-color: #003699;
-  --dark-color: #333333;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
-}
 
 * {
   box-sizing: border-box;
@@ -23,7 +16,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: #a5a9a8;
   text-decoration: none;
 }
 
@@ -39,6 +32,48 @@ img {
   width: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #a5a9a8;
+}
+
+h2.transform * {
+  text-transform: uppercase;
+}
+
+h2.transform .big {
+  font-size: 40px;
+}
+
+h2.transform .small {
+  font-size: 25px;
+}
+
+.input-container input {
+  border: solid 1px #000000;
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  text-align: left;
+}
+
+.input-container .header {
+  text-align: left;
+  position: relative;
+  font-size: 18px;
+  top: 16px;
+  left: 20px;
+  background-color: #fff;
+  clear: both;
+  float: left;
+  padding: 2px;
+  color: #a5a9a8;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -47,7 +82,7 @@ img {
   z-index: 1;
   width: 100%;
   border-bottom: solid 1px #000000;
-  opacity: 1.0;
+  opacity: 1;
   margin-bottom: 1rem;
   background-color: #3f4342;
   z-index: 1;
@@ -105,6 +140,10 @@ img {
 
 /* HOME PAGE */
 
+.home h2.transform {
+  font-style: italic;
+}
+
 .home .main-image .blurred {
   background-image: url("/images/hairdresser.jpg");
 
@@ -120,9 +159,9 @@ img {
 
 .home .main-image .normal {
   background-image: url("/images/hairdresser.jpg");
-  
+
   height: 550px;
-  
+
   position: relative;
   top: -575px;
 
@@ -144,20 +183,6 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.home h2 span {
-  text-transform: uppercase;
-  color: #a5a9a8;
-  font-style: italic;
-}
-
-.home h2 .big {
-  font-size: 40px;
-}
-
-.home h2 .small {
-  font-size: 25px;
 }
 
 .home.links {
@@ -190,4 +215,56 @@ img {
   text-decoration: underline;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+/* LOGIN PAGE */
+
+.login {
+  width: 99%;
+  max-width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login * {
+  text-align: center;
+}
+
+.login .left {
+  text-decoration: underline;
+  text-align: left;
+  display: block;
+  margin-right: auto;
+}
+
+.login .right {
+  text-decoration: underline;
+  text-align: right;
+  display: block;
+  margin-left: auto;
+}
+
+.login .bottom-buttons {
+  display: block;
+  width: 100%;
+}
+
+.login .bottom-buttons .left {
+  float: left;
+}
+
+.login .bottom-buttons .right {
+  float: right;
+}
+
+.login .bottom-buttons input.right {
+  background-color: #555555;
+  color: #FFF;
+  border: solid 2px #777978;
+  border-radius: 0px;
+  padding: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-decoration: none;
 }
