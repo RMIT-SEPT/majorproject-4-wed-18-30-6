@@ -1,38 +1,193 @@
-.App {
+/* Global Styles */
+:root {
+  --primary-color: #003699;
+  --dark-color: #333333;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #666;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+  width: 100%;
+  border-bottom: solid 1px #000000;
+  opacity: 1.0;
+  margin-bottom: 1rem;
+  background-color: #3f4342;
+  z-index: 1;
+}
+
+.navbar h1 {
+  color: #9ca2a0;
+  font-size: 36px;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar li a {
+  color: #9da3a1;
+  font-size: 20px;
+}
+
+.navbar li a:hover {
+  color: #747776;
+  font-size: 20px;
+}
+
+.navbar li.border {
+  border: solid 2px #a0a4a3;
+  margin: 2px;
+}
+
+.navbar li.border:hover {
+  border: solid 2px #767a77;
+  margin: 2px;
+}
+
+.navbar li.solid-line {
+  border-right: solid 1px #a0a4a3;
+  margin-left: 10px;
+}
+
+.navbar li.no-border {
+  border: solid 2px rgba(0, 0, 0, 0);
+  margin-top: 2px;
+  text-decoration: underline;
+}
+
+.navbar a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+
+.navbar a:hover {
+  color: var(--light-color);
+}
+
+/* HOME PAGE */
+
+.home .main-image .blurred {
+  background-image: url("/images/hairdresser.jpg");
+
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  height: 600px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home .main-image .normal {
+  background-image: url("/images/hairdresser.jpg");
+  
+  height: 550px;
+  
+  position: relative;
+  top: -575px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: none;
+}
+
+.home .main-image {
+  height: 600px;
+  position: relative;
+  top: -50px;
+
+  z-index: -1;
+}
+
+.home .content {
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home h2 span {
+  text-transform: uppercase;
+  color: #a5a9a8;
+  font-style: italic;
+}
+
+.home h2 .big {
+  font-size: 40px;
+}
+
+.home h2 .small {
+  font-size: 25px;
+}
+
+.home.links {
+  width: 100%;
+}
+
+.home.links .home-link {
+  width: 25%;
+  display: inline-block;
+}
+
+.home.links .home-link img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 25%;
+  border: solid 5px #82858a;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home.links .home-link .link {
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home.links .home-link .link * {
+  color: #9ca2a0;
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
 }
