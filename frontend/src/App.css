@@ -53,11 +53,17 @@ h2.transform .small {
   font-size: 25px;
 }
 
-.input-container input {
+.input-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-container .input {
   border: solid 1px #000000;
   border-radius: 10px;
   height: 40px;
-  width: 100%;
+  width: 99%;
   text-align: left;
 }
 
@@ -267,4 +273,70 @@ h2.transform .small {
   padding-left: 6px;
   padding-right: 6px;
   text-decoration: none;
+}
+
+/* REGISTER PAGE */
+
+.register {
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register * {
+  text-align: center;
+}
+
+.register.links {
+  position: relative;
+  top: 40px;
+}
+
+.register.links .register-link {
+  width: 33%;
+  display: inline-block;
+}
+
+.register.links .register-link img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 25%;
+  border: solid 5px #82858a;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register.links .register-link .link {
+  width: 100%;
+  text-align: center;
+}
+
+.register.links .register-link .link * {
+  color: #9ca2a0;
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.register .register-btn {
+  background-color: #555555;
+  color: #FFF;
+  border: solid 2px #777978;
+  border-radius: 0px;
+  padding: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 20px;
+  text-decoration: none;
+  position: relative;
+  top: 50px;
+}
+
+.register .register-btn:hover {
+  background-color: #666666;
+  border: solid 2px #777978;
 }

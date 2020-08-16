@@ -1,12 +1,12 @@
 import React from "react";
 
-const InputForm = ({name, type, header}) => {
+const InputForm = ({ style, name, type, header, onChange }) => {
   return (
-    <div className='input-container'>
-      <span className='header' for={name}>
+    <div className='input-container' style={style}>
+      <span className='header' htmlFor={name}>
         {header}
       </span>
-      <input type={type} name={name} />
+      <input onChange={onChange} className='input' id={name} type={type} name={name} />
     </div>
   );
 };

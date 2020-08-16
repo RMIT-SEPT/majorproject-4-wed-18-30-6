@@ -27,9 +27,6 @@ const App = () => {
             <Route path='/login'>
               <Login />
             </Route>
-            <Route path='/register'>
-              <Register />
-            </Route>
             <Route path='/register/admin'>
               <RegisterAdmin />
             </Route>
@@ -38,6 +35,9 @@ const App = () => {
             </Route>
             <Route path='/register/employee'>
               <RegisterEmployee />
+            </Route>
+            <Route path='/register'>
+              <Register />
             </Route>
             <Route path='/admin/'>
               <Dashboard />

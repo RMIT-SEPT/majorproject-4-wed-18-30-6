@@ -38,9 +38,9 @@ const Navbar = ({ title, icon }) => {
 
   return (
     <div className='navbar'>
-      <h1>
-        {title}
-      </h1>
+      <Link to='/'>
+        <h1>{title}</h1>
+      </Link>
       <ul>
         {isAuthenticated ? linksAuthenticated : linksNotAuthenticated}
         <li className='solid-line'></li>
@@ -53,11 +53,11 @@ const Navbar = ({ title, icon }) => {
 };
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 Navbar.defaultProps = {
-  title: "Online Appointment Booking System"
+  title: "Online Appointment Booking System",
 };
 
 export default Navbar;
