@@ -21,27 +21,13 @@ const App = () => {
         <div className='App'>
           <Navbar />
           <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route path='/login'>
-              <Login />
-            </Route>
-            <Route path='/register/admin'>
-              <RegisterAdmin />
-            </Route>
-            <Route path='/register/customer'>
-              <RegisterCustomer />
-            </Route>
-            <Route path='/register/employee'>
-              <RegisterEmployee />
-            </Route>
-            <Route path='/register'>
-              <Register />
-            </Route>
-            <Route path='/admin/'>
-              <Dashboard />
-            </Route>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register/admin' component={RegisterAdmin} />
+            <Route exact path='/register/customer' component={RegisterCustomer} />
+            <Route exact path='/register/employee' component={RegisterEmployee} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/dashboard' component={Dashboard} />
           </Switch>
         </div>
       </AuthState>

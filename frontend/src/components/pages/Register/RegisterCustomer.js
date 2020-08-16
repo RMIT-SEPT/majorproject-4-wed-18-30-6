@@ -11,11 +11,13 @@ const Register = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push("/");
+      return;
     }
 
     if (error !== "" && error !== undefined && error !== null) {
       alert(error);
       clearErrors();
+      return;
     }
 
     // eslint-disable-next-line

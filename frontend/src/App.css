@@ -340,3 +340,50 @@ h2.transform .small {
   background-color: #666666;
   border: solid 2px #777978;
 }
+
+/* DASHBOARD PAGE */
+
+.dashboard .content {
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard.links {
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard.links .dashboard-link {
+  width: 25%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard.links .dashboard-link img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 25%;
+  border: solid 5px #82858a;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard.links .dashboard-link .link {
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard.links .dashboard-link .link * {
+  color: #9ca2a0;
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
