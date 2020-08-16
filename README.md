@@ -12,7 +12,7 @@
 ## Records
 
 * Github repository : https://github.com/RMIT-SEPT/majorproject-4-wed-18-30-6.git
-
+* Trello : https://trello.com/b/HAVo7siY/wed-1830-6
 
 ## Code documentation
 
