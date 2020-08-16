@@ -1,18 +1,17 @@
 # RMIT SEPT 2020 Major Project
 
-# Group 00
+# Group 4.WED-18.30-6
 
 ## Members
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
+* Devara, Axel (S3685247)
+* Kumar, Jacob (S3786688)
+* Lay, Frankie (S3721625)
+* Singh, Abhiraj (S3774607)
+* Yip, Wailam (S3598673)
 
 ## Records
 
-* Github repository : https://github.com/RMIT-SEPT/MajorProject/Groupx
-* ClickUp Workspace : https://app.clickup.com/xxxx/yyyy
+* Github repository : https://github.com/RMIT-SEPT/majorproject-4-wed-18-30-6.git
 
 
 ## Code documentation
