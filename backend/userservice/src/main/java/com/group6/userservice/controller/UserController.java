@@ -12,32 +12,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
 
     @Autowired
-    private AuthService firebaseSerivce;
+    private AuthService firebaseService;
 
     @GetMapping("/")
-    public ResponseEntity<String> hello() {
-        return new ResponseEntity<String>("hello", HttpStatus.OK);
+    public String hello() {
+        return "hello";
     }
 
-    @GetMapping("/getuserdetails")
+    @GetMapping("/user/get/details")
     public User getUserDetails(@RequestHeader() String username) throws InterruptedException, ExecutionException{
-        return firebaseSerivce.getUserDetail(username);        
+        return firebaseService.getUserDetail(username);        
+    }
+
+    @GetMapping("/updateuserdetails")
+    public String updateUserDetails(@RequestBody() User user) throws InterruptedException, ExecutionException{
+        return firebaseService.updateUserDetails(user);        
     }
 
     @PostMapping("/register")
     public String registerEndpoint(@RequestBody User user) throws InterruptedException, ExecutionException{
-        return firebaseSerivce.register(user);
+        return firebaseService.register(user);
     }
 
     @PostMapping("/login")
+    @ResponseBody
     public String loginEndpoint(@RequestBody String username, String pass) throws InterruptedException, ExecutionException{
-        return firebaseSerivce.login(username, pass);
+        return firebaseService.login(username, pass);
     }
 
 

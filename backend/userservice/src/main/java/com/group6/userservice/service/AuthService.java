@@ -21,7 +21,7 @@ public class AuthService {
         DocumentSnapshot documentSnapshot = apiFuture.get();
         User log = documentSnapshot.toObject(User.class);
 
-        if(log.password == pass){
+        if(log.getPassword() == pass){
             return documentSnapshot.getUpdateTime().toString();
         } else {
             return "Wrong username/password";
@@ -30,12 +30,17 @@ public class AuthService {
     }
 
     public String register(User user) throws InterruptedException, ExecutionException {
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getUsername()).set(user);
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getId()).set(user);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public User getUserDetail(String username) throws InterruptedException, ExecutionException {
-        DocumentReference documentReference = dbFirestore.collection("users").document(username);
+    public String updateUserDetails(User user) throws InterruptedException, ExecutionException {
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getId()).set(user);
+        return collectionApiFuture.get().getUpdateTime().toString();
+    }
+
+    public User getUserDetail(String id) throws InterruptedException, ExecutionException {
+        DocumentReference documentReference = dbFirestore.collection("users").document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
 
         DocumentSnapshot document = future.get();
