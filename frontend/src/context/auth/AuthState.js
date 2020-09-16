@@ -26,21 +26,17 @@ const AuthState = (props) => {
   const loadUser = async () => {
     // localStorage.token
 
-    return;
-
     try {
       dispatch({
         type: USER_LOADED,
         payload: {
-          
+          type: "admin",
         },
       });
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: {
-          
-        },
+        payload: {},
       });
     }
   };
@@ -49,16 +45,12 @@ const AuthState = (props) => {
     try {
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {
-
-        },
+        payload: {},
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {
-          
-        },
+        payload: {},
       });
     }
   };
@@ -67,16 +59,12 @@ const AuthState = (props) => {
     try {
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {
-
-        },
+        payload: {},
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {
-          
-        },
+        payload: {},
       });
     }
   };
@@ -85,35 +73,26 @@ const AuthState = (props) => {
     try {
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {
-
-        },
+        payload: {},
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {
-          
-        },
+        payload: {},
       });
     }
   };
 
   const login = async (formData) => {
     try {
-      
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: {
-          
-        },
+        payload: {},
       });
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: {
-          
-        },
+        payload: {},
       });
     }
   };
