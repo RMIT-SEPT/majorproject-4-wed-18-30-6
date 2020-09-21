@@ -7,40 +7,7 @@ import BookingLink from "../../layouts/BookingLink";
 const Bookings = (props) => {
   const authContext = useContext(AuthContext);
 
-  var { upcoming_bookings, past_bookings } = authContext;
-
-  /* THESE ARE HARD CODED VALUES, REMOVE ONCE BACKEND IS LINKED */
-  upcoming_bookings = [
-    {
-      id: "2",
-      worker: "",
-      service: {
-        id: "1",
-        name: "Cleaner",
-        image: "images/cleaner.jpg",
-      },
-      due: "2020-09-18",
-      booker: "",
-      time: "2020-09-18",
-      price: 10.0,
-    },
-  ];
-
-  past_bookings = [
-    {
-      id: "1",
-      worker: "",
-      service: {
-        id: "1",
-        name: "Cleaner",
-        image: "images/cleaner.jpg",
-      },
-      due: "2020-09-18",
-      booker: "",
-      time: "2020-09-18",
-      price: 10.0,
-    },
-  ];
+  const { upcoming_bookings, past_bookings } = authContext;
 
   var onRescheduleBooking = id => {
 	console.log("onRescheduleBooking " + id);

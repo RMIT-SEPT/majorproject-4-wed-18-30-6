@@ -6,9 +6,15 @@ import InputForm from "../../layouts/InputForm";
 const Register = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, isAuthenticated, registerCustomer } = authContext;
+  const { error, clearErrors, loading, loadUser, isAuthenticated, registerCustomer } = authContext;
 
   useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+	}
+	
     if (isAuthenticated) {
       props.history.push("/");
       return;

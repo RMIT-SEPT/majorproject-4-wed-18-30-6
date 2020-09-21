@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import AuthContext from "../../../context/auth/authContext";
 import RegisterLink from "../../layouts/RegisterLink";
 
-const Register = () => {
+const Register = (props) => {
+  const authContext = useContext(AuthContext);
+
+  const {
+    error,
+    clearErrors,
+    loading,
+    loadUser,
+    isAuthenticated,
+  } = authContext;
+
+  useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+    }
+
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+
+    if (error !== "" && error !== undefined && error !== null) {
+      alert(error);
+      clearErrors();
+    }
+
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
   return (
     <div className='register'>
       <h2 className='transform'>

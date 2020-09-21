@@ -11,6 +11,12 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   CLEAR_ERRORS,
+  BOOKINGS_CREATE_SUCCESS,
+  BOOKINGS_CREATE_FAIL,
+  BOOKINGS_CANCEL_SUCCESS,
+  BOOKINGS_CANCEL_FAIL,
+  BOOKINGS_LOAD_SUCCESS,
+  BOOKINGS_LOAD_FAIL,
 } from "../types";
 
 const AuthState = (props) => {
@@ -19,6 +25,36 @@ const AuthState = (props) => {
     user: null,
     loading: true,
     error: null,
+    upcoming_bookings: [
+      {
+        id: "2",
+        worker: "",
+        service: {
+          id: "1",
+          name: "Cleaner",
+          image: "images/cleaner.jpg",
+        },
+        due: "2020-09-18",
+        booker: "",
+        time: "2020-09-18",
+        price: 10.0,
+      },
+    ],
+    past_bookings: [
+      {
+        id: "1",
+        worker: "",
+        service: {
+          id: "1",
+          name: "Cleaner",
+          image: "images/cleaner.jpg",
+        },
+        due: "2020-09-18",
+        booker: "",
+        time: "2020-09-18",
+        price: 10.0,
+      },
+    ],
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -109,6 +145,48 @@ const AuthState = (props) => {
     });
   };
 
+  const createBooking = async (booking) => {
+    try {
+      dispatch({
+        type: BOOKINGS_CREATE_SUCCESS,
+        payload: {},
+      });
+    } catch (err) {
+      dispatch({
+        type: BOOKINGS_CREATE_FAIL,
+        payload: {},
+      });
+    }
+  };
+  
+  const cancelBooking = async (id) => {
+    try {
+      dispatch({
+        type: BOOKINGS_CANCEL_SUCCESS,
+        payload: {},
+      });
+    } catch (err) {
+      dispatch({
+        type: BOOKINGS_CANCEL_FAIL,
+        payload: {},
+      });
+    }
+  };
+  
+  const loadBookings = async () => {
+    try {
+      dispatch({
+        type: BOOKINGS_LOAD_SUCCESS,
+        payload: {},
+      });
+    } catch (err) {
+      dispatch({
+        type: BOOKINGS_LOAD_FAIL,
+        payload: {},
+      });
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -117,13 +195,18 @@ const AuthState = (props) => {
         loading: state.loading,
         error: state.error,
         user: state.user,
+        upcoming_bookings: state.upcoming_bookings,
+        past_bookings: state.past_bookings,
         loadUser,
         registerAdmin,
         registerCustomer,
         registerEmployee,
         login,
         logout,
-        clearErrors,
+		clearErrors,
+		createBooking,
+		cancelBooking,
+		loadBookings,
       }}
     >
       {props.children}

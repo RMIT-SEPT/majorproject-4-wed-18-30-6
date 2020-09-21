@@ -7,9 +7,15 @@ import InputDropdownForm from "../../layouts/InputDropdownForm";
 const Register = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, isAuthenticated, registerEmployee } = authContext;
+  const { error, clearErrors, loading, loadUser, isAuthenticated, registerEmployee } = authContext;
 
   useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+	}
+	
     if (isAuthenticated) {
       props.history.push("/");
     }

@@ -1,20 +1,63 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import AuthContext from "../../../context/auth/authContext";
 import InputForm from "../../layouts/InputForm";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   const authContext = useContext(AuthContext);
-  
-  authContext.loadUser();
+
+  const { error, clearErrors, loading, loadUser, isAuthenticated, login } = authContext;
 
   useEffect(() => {
+    loadUser();
 
-    // check here if we are logged in already, transfer to home page if so
+    if (loading) {
+      return;
+	}
+	
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+
+    if (error !== "" && error !== undefined && error !== null) {
+      alert(error);
+      clearErrors();
+    }
 
     // eslint-disable-next-line
-  }, []);
+  }, [error, isAuthenticated, props.history]);
+
+  const [user, setUser] = useState({
+    name: "",
+    address: "",
+    mobile: "",
+    email: "",
+    skills: "",
+    type: "",
+  });
+
+  const { email, password } = user;
+
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (email === "") {
+      alert("Please enter in the email!");
+      return;
+    }
+    if (password === "") {
+      alert("Please enter in the password!");
+      return;
+    }
+
+    login({
+      email,
+      password,
+    });
+  };
 
   return (
     <div className='login'>
@@ -25,14 +68,24 @@ const Login = () => {
 
       <h3>Continue to the dashboard</h3>
 
-      <form>
-        <InputForm name='email' type='email' header='Email' />
-        <InputForm name='password' type='password' header='Password' />
+      <form onSubmit={onSubmit}>
+        <InputForm
+          name='email'
+          type='email'
+          header='Email'
+          onChange={onChange}
+        />
+        <InputForm
+          name='password'
+          type='password'
+          header='Password'
+          onChange={onChange}
+        />
         <Link className='right' to='/'>
           Forgot?
         </Link>
         <h4>Not your computer? Use private browsing to login</h4>
-        <div className="bottom-buttons">
+        <div className='bottom-buttons'>
           <Link className='left' to='/register'>
             Create Account
           </Link>

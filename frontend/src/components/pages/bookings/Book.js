@@ -2,25 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 
 import AuthContext from "../../../context/auth/authContext";
 import InputForm from "../../layouts/InputForm";
-import InputDropdownForm from "../../layouts/InputDropdownForm";
 
 const Book = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, isAuthenticated, createBooking } = authContext;
+  const { error, clearErrors, createBooking } = authContext;
 
   useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push("/");
-    }
-
     if (error !== "" && error !== undefined && error !== null) {
       alert(error);
       clearErrors();
     }
 
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, props.history]);
 
   const [booking, setBooking] = useState({
     type: "",
