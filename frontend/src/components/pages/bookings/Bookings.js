@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, Fragment } from "react";
 import AuthContext from "../../../context/auth/authContext";
 
 import BookingLink from "../../layouts/BookingLink";
@@ -7,19 +6,44 @@ import BookingLink from "../../layouts/BookingLink";
 const Bookings = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { upcoming_bookings, past_bookings } = authContext;
+  const {
+    loading,
+    isAuthenticated,
+    loadUser,
+    upcoming_bookings,
+    past_bookings,
+    getBookings,
+    cancelBooking,
+  } = authContext;
 
-  var onRescheduleBooking = id => {
-	console.log("onRescheduleBooking " + id);
+  var onRescheduleBooking = (id) => {
+    console.log("onRescheduleBooking " + id);
   };
 
-  var onCancelBooking = id => {
-	console.log("onCancelBooking " + id);
+  var onCancelBooking = (id) => {
+    cancelBooking(id);
   };
 
-  var onViewBooking = id => {
-	console.log("onViewBooking " + id);
+  var onViewBooking = (id) => {
+    console.log("onViewBooking " + id);
   };
+
+  useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      props.history.push("/");
+      return;
+    }
+
+    getBookings();
+
+    // eslint-disable-next-line
+  }, [isAuthenticated]);
 
   return (
     <div className='bookings'>
@@ -41,10 +65,14 @@ const Bookings = (props) => {
             <BookingLink booking={booking} key={booking.id}>
               <Fragment>
                 <li className='border'>
-                  <button onClick={() => onRescheduleBooking(booking.id)}>Reschedule</button>
+                  <button onClick={() => onRescheduleBooking(booking.id)}>
+                    Reschedule
+                  </button>
                 </li>
                 <li className='border'>
-                  <button onClick={() => onCancelBooking(booking.id)}>Cancel</button>
+                  <button onClick={() => onCancelBooking(booking.id)}>
+                    Cancel
+                  </button>
                 </li>
               </Fragment>
             </BookingLink>
@@ -61,7 +89,9 @@ const Bookings = (props) => {
             <BookingLink booking={booking} key={booking.id}>
               <Fragment>
                 <li className='border'>
-                  <button onClick={() => onViewBooking(booking.id)}>View</button>
+                  <button onClick={() => onViewBooking(booking.id)}>
+                    View
+                  </button>
                 </li>
               </Fragment>
             </BookingLink>

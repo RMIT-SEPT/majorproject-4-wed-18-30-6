@@ -6,9 +6,27 @@ import InputForm from "../../layouts/InputForm";
 const Book = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, createBooking } = authContext;
+  const {
+    error,
+    clearErrors,
+    loading,
+    isAuthenticated,
+    loadUser,
+    createBooking,
+  } = authContext;
 
   useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      props.history.push("/login");
+      return;
+    }
+
     if (error !== "" && error !== undefined && error !== null) {
       alert(error);
       clearErrors();
@@ -18,13 +36,13 @@ const Book = (props) => {
   }, [error, props.history]);
 
   const [booking, setBooking] = useState({
-    type: "",
+    service: "",
     date: "",
     time: "",
     worker: "",
   });
 
-  const { type, date, time, worker } = booking;
+  const { service, date, time, worker } = booking;
 
   const onChange = (e) =>
     setBooking({ ...booking, [e.target.name]: e.target.value });
@@ -32,8 +50,8 @@ const Book = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (type === "") {
-      alert("Please enter in the type!");
+    if (service === "") {
+      alert("Please enter in the service!");
       return;
     }
     if (date === "") {
@@ -49,7 +67,7 @@ const Book = (props) => {
       return;
     }
 
-    createBooking(type, date, time, worker);
+    createBooking(service, date, time, worker);
   };
 
   return (
@@ -67,9 +85,9 @@ const Book = (props) => {
 
       <form onSubmit={onSubmit}>
         <InputForm
-          name='type'
+          name='service'
           type='text'
-          header='Booking Type'
+          header='Booking Service'
           onChange={onChange}
         />
         <InputForm

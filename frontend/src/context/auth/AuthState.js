@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
 
@@ -18,6 +19,14 @@ import {
   BOOKINGS_LOAD_SUCCESS,
   BOOKINGS_LOAD_FAIL,
 } from "../types";
+
+const setAuthToken = (token) => {
+  if (token) {
+    axios.defaults.headers.common["x-auth-token"] = token;
+  } else {
+    delete axios.defaults.headers.common["x-auth-token"];
+  }
+};
 
 const AuthState = (props) => {
   const initialState = {
@@ -55,80 +64,138 @@ const AuthState = (props) => {
         price: 10.0,
       },
     ],
+    services: [
+      {
+        name: "Dentist",
+        image: "images/dentist.jpg",
+      },
+      {
+        name: "Gym",
+        image: "images/cleaner.jpg",
+      },
+      {
+        name: "Hairdresser",
+        image: "images/hairdresser.jpg",
+      },
+      {
+        name: "Cleaners",
+        image: "images/cleaner.jpg",
+      },
+    ],
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
-    // localStorage.token
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
 
     try {
+      const res = await axios.get("/auth");
+
       dispatch({
         type: USER_LOADED,
-        payload: {
-          type: "admin",
-        },
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
 
   const registerAdmin = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    formData.role = "admin";
+
     try {
+      const res = await axios.post("/register", formData, config);
+
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
 
   const registerCustomer = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    formData.role = "customer";
+
     try {
+      const res = await axios.post("/register", formData, config);
+
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
 
   const registerEmployee = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    formData.role = "employeee";
+
     try {
+      const res = await axios.post("/register", formData, config);
+
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
 
   const login = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
     try {
+      const res = await axios.post("/login", formData, config);
+
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
@@ -145,46 +212,68 @@ const AuthState = (props) => {
     });
   };
 
-  const createBooking = async (booking) => {
+  const createBooking = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
     try {
+      const res = await axios.post("/user/create/bookings", formData, config);
+
       dispatch({
         type: BOOKINGS_CREATE_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: BOOKINGS_CREATE_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
-  
+
   const cancelBooking = async (id) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
     try {
+      const res = await axios.post("/user/cancel/bookings", id, config);
+
       dispatch({
         type: BOOKINGS_CANCEL_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: BOOKINGS_CANCEL_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
   };
-  
-  const loadBookings = async () => {
+
+  const getBookings = async () => {
     try {
+      const res = await axios.get("/user/get/bookings");
+
       dispatch({
         type: BOOKINGS_LOAD_SUCCESS,
-        payload: {},
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: BOOKINGS_LOAD_FAIL,
-        payload: {},
+        payload: err.response.data.msg,
       });
     }
+  };
+
+  const getServices = async () => {
+    //
   };
 
   return (
@@ -197,16 +286,18 @@ const AuthState = (props) => {
         user: state.user,
         upcoming_bookings: state.upcoming_bookings,
         past_bookings: state.past_bookings,
+        services: state.services,
         loadUser,
         registerAdmin,
         registerCustomer,
         registerEmployee,
         login,
         logout,
-		clearErrors,
-		createBooking,
-		cancelBooking,
-		loadBookings,
+        clearErrors,
+        createBooking,
+        cancelBooking,
+        getBookings,
+        getServices,
       }}
     >
       {props.children}

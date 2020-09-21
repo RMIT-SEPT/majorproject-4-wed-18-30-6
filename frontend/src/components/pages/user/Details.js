@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 
 import AuthContext from "../../../context/auth/authContext";
 import InputForm from "../../layouts/InputForm";
-import InputDropdownForm from "../../layouts/InputDropdownForm";
 
 const Details = (props) => {
   const authContext = useContext(AuthContext);
