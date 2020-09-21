@@ -6,15 +6,22 @@ import InputForm from "../../layouts/InputForm";
 const Register = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, loading, loadUser, isAuthenticated, registerCustomer } = authContext;
+  const {
+    error,
+    clearErrors,
+    loading,
+    loadUser,
+    isAuthenticated,
+    registerCustomer,
+  } = authContext;
 
   useEffect(() => {
     loadUser();
 
     if (loading) {
       return;
-	}
-	
+    }
+
     if (isAuthenticated) {
       props.history.push("/");
       return;
@@ -30,21 +37,44 @@ const Register = (props) => {
   }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
+    username: "",
+    password: "",
     address: "",
     mobile: "",
     email: "",
   });
 
-  const { name, address, mobile, email } = user;
+  const {
+    first_name,
+    last_name,
+    username,
+    password,
+    address,
+    mobile,
+    email,
+  } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "") {
-      alert("Please enter in the name!");
+    if (first_name === "") {
+      alert("Please enter in the first name!");
+      return;
+    }
+    if (last_name === "") {
+      alert("Please enter in the last name!");
+      return;
+    }
+    if (username === "") {
+      alert("Please enter in the username!");
+      return;
+    }
+    if (password === "") {
+      alert("Please enter in the password!");
       return;
     }
     if (address === "") {
@@ -61,9 +91,12 @@ const Register = (props) => {
     }
 
     registerCustomer({
-      name,
-      address,
-      mobile,
+      first_name,
+	  last_name,
+	  username,
+	  password,
+      //address,
+      //mobile,
       email,
     });
   };
@@ -82,7 +115,38 @@ const Register = (props) => {
       <h3>Please fill in the form</h3>
 
       <form onSubmit={onSubmit}>
-        <InputForm name='name' type='text' header='Name' onChange={onChange} />
+        <div>
+          <InputForm
+            style={{ display: "inline-block", width: "50%" }}
+            name='first_name'
+            type='text'
+            header='First Name'
+            onChange={onChange}
+          />
+          <InputForm
+            style={{ display: "inline-block", width: "50%" }}
+            name='last_name'
+            type='text'
+            header='Last Name'
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <InputForm
+            style={{ display: "inline-block", width: "50%" }}
+            name='username'
+            type='text'
+            header='Username'
+            onChange={onChange}
+          />
+          <InputForm
+            style={{ display: "inline-block", width: "50%" }}
+            name='password'
+            type='password'
+            header='Password'
+            onChange={onChange}
+          />
+        </div>
         <InputForm
           name='address'
           type='text'

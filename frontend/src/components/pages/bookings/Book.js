@@ -37,15 +37,17 @@ const Book = (props) => {
 
   const [booking, setBooking] = useState({
     service: "",
-    date: "",
-    time: "",
+    date: new Date(),
     worker: "",
   });
 
   const { service, date, time, worker } = booking;
 
   const onChange = (e) =>
-    setBooking({ ...booking, [e.target.name]: e.target.value });
+	setBooking({ ...booking, [e.target.name]: e.target.value });
+	
+	const onDateChange = (date) =>
+	  setBooking({ ...booking, date: date });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -56,10 +58,6 @@ const Book = (props) => {
     }
     if (date === "") {
       alert("Please enter in the date!");
-      return;
-    }
-    if (time === "") {
-      alert("Please enter in the time!");
       return;
     }
     if (worker === "") {
@@ -92,15 +90,10 @@ const Book = (props) => {
         />
         <InputForm
           name='date'
-          type='text'
+          type='date'
           header='Booking Date'
-          onChange={onChange}
-        />
-        <InputForm
-          name='time'
-          type='text'
-          header='Booking Time'
-          onChange={onChange}
+		  onChange={onDateChange}
+		  def={date}
         />
         <InputForm
           name='worker'

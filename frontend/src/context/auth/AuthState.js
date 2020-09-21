@@ -30,40 +30,12 @@ const setAuthToken = (token) => {
 
 const AuthState = (props) => {
   const initialState = {
-    isAuthenticated: false,
-    user: null,
-    loading: true,
+    isAuthenticated: true,
+    user: {},
+    loading: false,
     error: null,
-    upcoming_bookings: [
-      {
-        id: "2",
-        worker: "",
-        service: {
-          id: "1",
-          name: "Cleaner",
-          image: "images/cleaner.jpg",
-        },
-        due: "2020-09-18",
-        booker: "",
-        time: "2020-09-18",
-        price: 10.0,
-      },
-    ],
-    past_bookings: [
-      {
-        id: "1",
-        worker: "",
-        service: {
-          id: "1",
-          name: "Cleaner",
-          image: "images/cleaner.jpg",
-        },
-        due: "2020-09-18",
-        booker: "",
-        time: "2020-09-18",
-        price: 10.0,
-      },
-    ],
+    upcoming_bookings: [],
+    past_bookings: [],
     services: [
       {
         name: "Dentist",
@@ -87,10 +59,11 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
+	return;
+
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-
     try {
       const res = await axios.get("/auth");
 
@@ -161,7 +134,7 @@ const AuthState = (props) => {
       },
     };
 
-    formData.role = "employeee";
+    formData.role = "employee";
 
     try {
       const res = await axios.post("/register", formData, config);

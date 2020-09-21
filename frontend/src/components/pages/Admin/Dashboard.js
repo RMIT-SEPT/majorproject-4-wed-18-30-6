@@ -28,7 +28,7 @@ const Dashboard = (props) => {
       return;
     }
 
-    switch (user.type) {
+    switch (user.role) {
       case "admin":
         setDashboard((dashboard) => ({
           ...dashboard,

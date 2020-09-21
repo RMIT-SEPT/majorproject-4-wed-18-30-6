@@ -84,7 +84,6 @@ const Login = (props) => {
         <Link className='right' to='/'>
           Forgot?
         </Link>
-        <h4>Not your computer? Use private browsing to login</h4>
         <div className='bottom-buttons'>
           <Link className='left' to='/register'>
             Create Account
