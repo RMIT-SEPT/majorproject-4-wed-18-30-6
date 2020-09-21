@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const authContext = useContext(AuthContext);
+  
+  authContext.loadUser();
 
   useEffect(() => {
-    authContext.loadUser();
 
     // check here if we are logged in already, transfer to home page if so
 
