@@ -13,7 +13,7 @@ jobs:
       ECR_REPOSITORY_NAME: wed18306
       FULL_IMAGE_NAME: 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306
     steps:
-      - checkout
+      - checkout:
           path: ~/wed1830-group6
       - setup_remote_docker
 #       - run:
