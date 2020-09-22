@@ -29,14 +29,30 @@ public class AuthService {
         
     }
 
-    public String register(User user) throws InterruptedException, ExecutionException {
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getId()).set(user);
-        return collectionApiFuture.get().getUpdateTime().toString();
+    public User register(User user) throws InterruptedException, ExecutionException {
+        dbFirestore.collection("users").document(user.getId()).set(user);
+
+        DocumentReference documentReference = dbFirestore.collection("users").document(user.getId());
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+
+        DocumentSnapshot document = future.get();
+
+        User u = document.toObject(User.class);
+
+        return u;
     }
 
-    public String updateUserDetails(User user) throws InterruptedException, ExecutionException {
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection("users").document(user.getId()).set(user);
-        return collectionApiFuture.get().getUpdateTime().toString();
+    public User updateUserDetails(User user) throws InterruptedException, ExecutionException {
+        dbFirestore.collection("users").document(user.getId()).set(user);
+
+        DocumentReference documentReference = dbFirestore.collection("users").document(user.getId());
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+
+        DocumentSnapshot document = future.get();
+
+        User u = document.toObject(User.class);
+
+        return u;
     }
 
     public User getUserDetail(String id) throws InterruptedException, ExecutionException {
