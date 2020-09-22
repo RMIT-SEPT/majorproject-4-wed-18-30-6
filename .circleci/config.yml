@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build_and_deploy:
-    working_directory: ~/backend
+    working_directory: ./backend
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
