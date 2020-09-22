@@ -7,7 +7,7 @@ import AuthContext from "../../context/auth/authContext";
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
 
-  const { isAuthenticated, logout, user } = authContext;
+  const { isAuthenticated, logout, user, loading } = authContext;
 
   const onLogout = () => {
     logout();
@@ -42,7 +42,13 @@ const Navbar = ({ title, icon }) => {
         <h1>{title}</h1>
       </Link>
       <ul>
-        {isAuthenticated ? linksAuthenticated : linksNotAuthenticated}
+        {loading ? (
+          <Fragment />
+        ) : isAuthenticated ? (
+          linksAuthenticated
+        ) : (
+          linksNotAuthenticated
+        )}
         <li className='solid-line'></li>
         <li className='no-border'>
           <Link to='/'>Contact Us</Link>

@@ -7,17 +7,30 @@ import DashboardLink from "../../layouts/DashboardLink";
 const Dashboard = (props) => {
   const authContext = useContext(AuthContext);
 
-  useEffect(() => {
-    authContext.loadUser();
+  const { user, loading, isAuthenticated, loadUser } = authContext;
 
-    if (!authContext.isAuthenticated) {
+  const [dashboard, setDashboard] = useState({
+    type: "",
+    links: [],
+  });
+
+  const { type, links } = dashboard;
+
+  useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
       props.history.push("/");
       return;
     }
 
-    switch (authContext.user.type) {
+    switch (user.role) {
       case "admin":
-        setDashboard({
+        setDashboard((dashboard) => ({
           ...dashboard,
           type: "Admin",
           links: [
@@ -57,17 +70,17 @@ const Dashboard = (props) => {
               link: "/",
             },
           ],
-        });
+        }));
         break;
       case "employee":
-        setDashboard({
+        setDashboard((dashboard) => ({
           ...dashboard,
           type: "Employee",
           links: [
             {
               name: "My Details",
               image: "",
-              link: "/",
+              link: "/user/details",
             },
             {
               name: "My Roster",
@@ -95,17 +108,17 @@ const Dashboard = (props) => {
               link: "/",
             },
           ],
-        });
+        }));
         break;
       case "customer":
-        setDashboard({
+        setDashboard((dashboard) => ({
           ...dashboard,
           type: "Customer",
           links: [
             {
               name: "My Details",
               image: "",
-              link: "/",
+              link: "/user/details",
             },
             {
               name: "My Bookings",
@@ -133,21 +146,14 @@ const Dashboard = (props) => {
               link: "/",
             },
           ],
-        });
+        }));
         break;
       default:
         break;
     }
 
     // eslint-disable-next-line
-  }, [authContext.isAuthenticated]);
-
-  const [dashboard, setDashboard] = useState({
-    type: "",
-    links: [],
-  });
-
-  const { type, links } = dashboard;
+  }, [isAuthenticated]);
 
   return (
     <div className='dashboard'>

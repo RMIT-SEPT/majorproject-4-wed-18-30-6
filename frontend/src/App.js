@@ -11,6 +11,9 @@ import RegisterAdmin from "./components/pages/register/RegisterAdmin";
 import RegisterCustomer from "./components/pages/register/RegisterCustomer";
 import RegisterEmployee from "./components/pages/register/RegisterEmployee";
 import Dashboard from "./components/pages/admin/Dashboard";
+import Details from "./components/pages/user/Details";
+import Bookings from "./components/pages/bookings/Bookings";
+import Book from "./components/pages/bookings/Book";
 
 import AuthState from "./context/auth/AuthState";
 
@@ -28,6 +31,9 @@ const App = () => {
             <Route exact path='/register/employee' component={RegisterEmployee} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/user/details' component={Details} />
+            <Route exact path='/book' component={Book} />
+            <Route exact path='/bookings' component={Bookings} />
           </Switch>
         </div>
       </AuthState>

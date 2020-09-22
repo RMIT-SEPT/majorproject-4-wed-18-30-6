@@ -3,60 +3,42 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/auth/authContext";
 import InputForm from "../../layouts/InputForm";
 
-const Register = (props) => {
+const Details = (props) => {
   const authContext = useContext(AuthContext);
 
-  const {
-    error,
-    clearErrors,
-    loading,
-    loadUser,
-    isAuthenticated,
-    registerEmployee,
-  } = authContext;
+  const { error, clearErrors, updateUserDetails } = authContext;
 
   useEffect(() => {
-    loadUser();
-
-    if (loading) {
-      return;
-    }
-
-    if (isAuthenticated) {
-      props.history.push("/");
-    }
-
     if (error !== "" && error !== undefined && error !== null) {
       alert(error);
       clearErrors();
     }
 
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, props.history]);
 
-  const [user, setUser] = useState({
+  const [details, setDetails] = useState({
     first_name: "",
     last_name: "",
-    username: "",
-    password: "",
+    number: "",
+    birth: "",
     address: "",
-    mobile: "",
+    gender: "",
     email: "",
-    organization: "",
   });
 
   const {
     first_name,
     last_name,
-    username,
-    password,
+    number,
+    birth,
     address,
-    mobile,
+    gender,
     email,
-    organization,
-  } = user;
+  } = details;
 
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setDetails({ ...details, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -69,55 +51,48 @@ const Register = (props) => {
       alert("Please enter in the last name!");
       return;
     }
-    if (username === "") {
-      alert("Please enter in the username!");
+    if (number === "") {
+      alert("Please enter in the number!");
       return;
     }
-    if (password === "") {
-      alert("Please enter in the password!");
+    if (birth === "") {
+      alert("Please enter in the birth!");
       return;
     }
     if (address === "") {
       alert("Please enter in the address!");
       return;
     }
-    if (mobile === "") {
-      alert("Please enter in the mobile!");
+    if (gender === "") {
+      alert("Please enter in the gender!");
       return;
     }
     if (email === "") {
       alert("Please enter in the email!");
       return;
     }
-    if (organization === "") {
-      alert("Please enter in the organization!");
-      return;
-    }
 
-    registerEmployee({
+    updateUserDetails(
       first_name,
       last_name,
-	  username,
-	  password,
-      //address,
-      //mobile,
-	  email,
-	  //organization
-    });
+      number,
+      birth,
+      address,
+      gender,
+      email
+    );
   };
 
   return (
-    <div className='register'>
+    <div className='user-details'>
       <h2 className='transform'>
-        <span className='big'>E</span>
-        <span className='small'>mployee </span>
-        <span className='big'>S</span>
-        <span className='small'>ign </span>
-        <span className='big'> U</span>
-        <span className='small'>p</span>
+        <span className='big'>M</span>
+        <span className='small'>y </span>
+        <span className='big'>D</span>
+        <span className='small'>etails </span>
       </h2>
 
-      <h3>Please fill in the form</h3>
+      <h3>Please add/edit your details correctly</h3>
 
       <form onSubmit={onSubmit}>
         <div>
@@ -139,33 +114,36 @@ const Register = (props) => {
         <div>
           <InputForm
             style={{ display: "inline-block", width: "50%" }}
-            name='username'
+            name='number'
             type='text'
-            header='Username'
+            header='Number'
             onChange={onChange}
           />
           <InputForm
             style={{ display: "inline-block", width: "50%" }}
-            name='password'
-            type='password'
-            header='Password'
+            name='birth'
+            type='text'
+            header='Date Of Birth'
             onChange={onChange}
           />
         </div>
-        <InputForm
-          name='address'
-          type='text'
-          header='Address'
-          onChange={onChange}
-        />
         <div>
           <InputForm
             style={{ display: "inline-block", width: "50%" }}
-            name='mobile'
-            type='phone'
-            header='Mobile'
+            name='address'
+            type='text'
+            header='Address'
             onChange={onChange}
           />
+          <InputForm
+            style={{ display: "inline-block", width: "50%" }}
+            name='gender'
+            type='text'
+            header='Gender'
+            onChange={onChange}
+          />
+        </div>
+        <div>
           <InputForm
             style={{ display: "inline-block", width: "50%" }}
             name='email'
@@ -174,20 +152,10 @@ const Register = (props) => {
             onChange={onChange}
           />
         </div>
-        <InputForm
-          name='organization'
-          type='text'
-          header='Organization'
-          onChange={onChange}
-        />
-        <input className='register-btn' type='submit' value='Sign up' />
+        <input className='done-btn' type='submit' value='Done' />
       </form>
-
-      <h3 style={{ position: "relative", top: "90px" }}>
-        Your request will be sent to an admin for approval
-      </h3>
     </div>
   );
 };
 
-export default Register;
+export default Details;

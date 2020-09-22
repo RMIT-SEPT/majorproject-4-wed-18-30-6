@@ -7,8 +7,11 @@ import HomeLink from "../layouts/HomeLink";
 const Home = () => {
   const authContext = useContext(AuthContext);
 
+  const { services, loadUser, getServices } = authContext;
+
   useEffect(() => {
-    authContext.loadUser();
+    loadUser();
+    getServices();
 
     // eslint-disable-next-line
   }, []);
@@ -28,18 +31,14 @@ const Home = () => {
           <span className='small'>{"ervices,"} </span>
         </h2>
         <div className='home links'>
-          <HomeLink
-            image='images/dentist.jpg'
-            text='Dentist Appointments'
-            link='/'
-          />
-          <HomeLink image='images/cleaner.jpg' text='Gym' link='/' />
-          <HomeLink
-            image='images/hairdresser.jpg'
-            text='Hairdresser'
-            link='/'
-          />
-          <HomeLink image='images/cleaner.jpg' text='Cleaners' link='/' />
+          {services.map((service) => (
+            <HomeLink
+              key={service.name}
+              text={service.name}
+              image={service.image}
+              link={`book?type=${service.name}`}
+            />
+          ))}
         </div>
       </div>
     </div>
