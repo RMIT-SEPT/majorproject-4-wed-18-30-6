@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build_and_deploy:
-    working_directory: ./backend
+    working_directory: ~/wed1830-group6/backend
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
@@ -14,6 +14,7 @@ jobs:
       FULL_IMAGE_NAME: 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306
     steps:
       - checkout
+          path: ~/wed1830-group6
       - setup_remote_docker
 #       - run:
 #           name: Setup common environment variables
