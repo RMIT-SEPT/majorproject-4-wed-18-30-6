@@ -1,5 +1,6 @@
 package com.group6.userservice.controller;
 
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import com.group6.userservice.service.AuthService;
@@ -30,19 +31,20 @@ public class UserController {
     }
 
     @GetMapping("/updateuserdetails")
-    public String updateUserDetails(@RequestBody() User user) throws InterruptedException, ExecutionException{
+    public User updateUserDetails(@RequestBody() User user) throws InterruptedException, ExecutionException{
         return firebaseService.updateUserDetails(user);        
     }
 
     @PostMapping("/register")
-    public String registerEndpoint(@RequestBody User user) throws InterruptedException, ExecutionException{
+    public User registerEndpoint(@RequestBody User user) throws InterruptedException, ExecutionException{
         return firebaseService.register(user);
     }
 
     @PostMapping("/login")
     @ResponseBody
     public String loginEndpoint(@RequestBody String username, String pass) throws InterruptedException, ExecutionException{
-        return firebaseService.login(username, pass);
+        firebaseService.login(username, pass);
+        return UUID.randomUUID().toString();
     }
 
 
