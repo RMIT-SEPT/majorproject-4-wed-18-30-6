@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register Admin tests should render correctly 1`] = `
+<div
+  className="register"
+>
+  <h2
+    className="transform"
+  >
+    <span
+      className="big"
+    >
+      A
+    </span>
+    <span
+      className="small"
+    >
+      dmin 
+    </span>
+    <span
+      className="big"
+    >
+      S
+    </span>
+    <span
+      className="small"
+    >
+      ign 
+    </span>
+    <span
+      className="big"
+    >
+       U
+    </span>
+    <span
+      className="small"
+    >
+      p
+    </span>
+  </h2>
+  <h3>
+    Please fill in the form
+  </h3>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="input-container"
+    >
+      <span
+        className="header"
+        htmlFor="name"
+      >
+        Name
+      </span>
+      <input
+        className="input"
+        id="name"
+        name="name"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="input-container"
+    >
+      <span
+        className="header"
+        htmlFor="address"
+      >
+        Address
+      </span>
+      <input
+        className="input"
+        id="address"
+        name="address"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div>
+      <div
+        className="input-container"
+        style={
+          Object {
+            "display": "inline-block",
+            "width": "50%",
+          }
+        }
+      >
+        <span
+          className="header"
+          htmlFor="mobile"
+        >
+          Mobile
+        </span>
+        <input
+          className="input"
+          id="mobile"
+          name="mobile"
+          onChange={[Function]}
+          type="phone"
+        />
+      </div>
+      <div
+        className="input-container"
+        style={
+          Object {
+            "display": "inline-block",
+            "width": "50%",
+          }
+        }
+      >
+        <span
+          className="header"
+          htmlFor="email"
+        >
+          Email
+        </span>
+        <input
+          className="input"
+          id="email"
+          name="email"
+          onChange={[Function]}
+          type="email"
+        />
+      </div>
+    </div>
+    <div>
+      <div
+        className="input-container"
+        style={
+          Object {
+            "display": "inline-block",
+            "width": "50%",
+          }
+        }
+      >
+        <span
+          className="header"
+          htmlFor="skills"
+        >
+          Skills
+        </span>
+        <select
+          className="input"
+          id="skills"
+          name="skills"
+          onChange={[Function]}
+        >
+          <option
+            value="cleaning"
+          >
+            Cleaning
+          </option>
+          <option
+            value="sweeping"
+          >
+            Sweeping
+          </option>
+        </select>
+      </div>
+      <div
+        className="input-container"
+        style={
+          Object {
+            "display": "inline-block",
+            "width": "50%",
+          }
+        }
+      >
+        <span
+          className="header"
+          htmlFor="type"
+        >
+          Type
+        </span>
+        <select
+          className="input"
+          id="type"
+          name="type"
+          onChange={[Function]}
+        >
+          <option
+            value="tier1"
+          >
+            Tier1
+          </option>
+          <option
+            value="tier2"
+          >
+            Tier2
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="input-container"
+    >
+      <span
+        className="header"
+        htmlFor="availability"
+      >
+        Availability
+      </span>
+      <input
+        className="input"
+        id="availability"
+        name="availability"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <input
+      className="register-btn"
+      type="submit"
+      value="Sign up"
+    />
+  </form>
+  <h3
+    style={
+      Object {
+        "position": "relative",
+        "top": "90px",
+      }
+    }
+  >
+    Your request will be sent to the management for approval
+  </h3>
+</div>
+`;
