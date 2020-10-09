@@ -53,7 +53,9 @@ const AuthState = (props) => {
         name: "Cleaners",
         image: "images/cleaner.jpg",
       },
-    ],
+	],
+	availiableTimes: [],
+	availiableWorkerTimes: [],
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -246,6 +248,26 @@ const AuthState = (props) => {
   };
 
   const getServices = async () => {
+    try {
+      const res = await axios.get("/services/get/");
+
+      dispatch({
+        type: BOOKINGS_LOAD_SUCCESS,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: BOOKINGS_LOAD_FAIL,
+        payload: err.response.data.msg,
+      });
+    }
+  };
+
+  const loadAvaliableTimes = async (service) => {
+    //
+  };
+
+  const loadAvaliableWorkerTimes = async (service, worker) => {
     //
   };
 
@@ -259,7 +281,9 @@ const AuthState = (props) => {
         user: state.user,
         upcoming_bookings: state.upcoming_bookings,
         past_bookings: state.past_bookings,
-        services: state.services,
+		services: state.services,
+		availiableTimes: state.availiableTimes,
+		availiableWorkerTimes: state.availiableWorkerTimes,
         loadUser,
         registerAdmin,
         registerCustomer,
@@ -270,7 +294,9 @@ const AuthState = (props) => {
         createBooking,
         cancelBooking,
         getBookings,
-        getServices,
+		getServices,
+		loadAvaliableTimes,
+		loadAvaliableWorkerTimes
       }}
     >
       {props.children}

@@ -13,6 +13,8 @@ import {
   BOOKINGS_CANCEL_FAIL,
   BOOKINGS_LOAD_SUCCESS,
   BOOKINGS_LOAD_FAIL,
+  SERVICES_LOAD_SUCCESS,
+  SERVICES_LOAD_FAIL,
 } from "../types";
 
 export default (state, action) => {
@@ -36,6 +38,7 @@ export default (state, action) => {
         user: null,
         error: action.payload,
       };
+    case SERVICES_LOAD_FAIL:
     case BOOKINGS_CANCEL_FAIL:
     case BOOKINGS_CREATE_FAIL:
     case BOOKINGS_LOAD_FAIL:
@@ -77,6 +80,12 @@ export default (state, action) => {
       return {
         ...state,
         error: null,
+      };
+    case SERVICES_LOAD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        services: action.payload,
       };
     default:
       return state;

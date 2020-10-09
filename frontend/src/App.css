@@ -548,6 +548,35 @@ h2.transform .small {
   top: 50px;
 }
 
+.book .times-container {
+  position: relative;
+  top: 100px;
+}
+
+.book .times-container h3 {
+  color: #edec95;
+  text-decoration: underline;
+  font-weight: 100;
+}
+
+.book .service-times-container {
+  background-color: #666666;
+  border: solid 2px #777978;
+  border-radius: 10px;
+  width: 300px;
+  height: 100%;
+  float: left;
+}
+
+.book .worker-times-container {
+  background-color: #666666;
+  border: solid 2px #777978;
+  border-radius: 10px;
+  width: 300px;
+  height: 100%;
+  float: right;
+}
+
 .book .book-btn:hover {
   background-color: #666666;
   border: solid 2px #777978;
@@ -687,6 +716,3 @@ h2.transform .small {
   background-color: #666666;
   border: solid 2px #777978;
 }
-
-
-

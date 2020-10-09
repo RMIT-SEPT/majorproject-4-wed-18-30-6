@@ -13,6 +13,10 @@ const Book = (props) => {
     isAuthenticated,
     loadUser,
     createBooking,
+    availiableTimes,
+    availiableWorkerTimes,
+    loadAvaliableTimes,
+    loadAvaliableWorkerTimes,
   } = authContext;
 
   useEffect(() => {
@@ -38,16 +42,21 @@ const Book = (props) => {
   const [booking, setBooking] = useState({
     service: "",
     date: new Date(),
+    time: new Date(),
     worker: "",
   });
 
   const { service, date, time, worker } = booking;
 
-  const onChange = (e) =>
-	setBooking({ ...booking, [e.target.name]: e.target.value });
-	
-	const onDateChange = (date) =>
-	  setBooking({ ...booking, date: date });
+  const onChange = (e) => {
+    setBooking({ ...booking, [e.target.name]: e.target.value });
+
+    loadAvaliableTimes(booking.service);
+    loadAvaliableWorkerTimes(booking.service, booking.worker);
+  };
+
+  const onDateChange = (date) => setBooking({ ...booking, date: date });
+  const onTimeChange = (date) => setBooking({ ...booking, time: time });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -58,6 +67,10 @@ const Book = (props) => {
     }
     if (date === "") {
       alert("Please enter in the date!");
+      return;
+    }
+    if (time === "") {
+      alert("Please enter in the time!");
       return;
     }
     if (worker === "") {
@@ -92,8 +105,15 @@ const Book = (props) => {
           name='date'
           type='date'
           header='Booking Date'
-		  onChange={onDateChange}
-		  def={date}
+          onChange={onDateChange}
+          def={date}
+        />
+        <InputForm
+          name='time'
+          type='date'
+          header='Booking Time'
+          onChange={onTimeChange}
+          def={time}
         />
         <InputForm
           name='worker'
@@ -103,6 +123,28 @@ const Book = (props) => {
         />
         <input className='book-btn' type='submit' value='Done' />
       </form>
+      <div className='times-container'>
+        <div className='service-times-container'>
+          <h3>Avaliable Times</h3>
+          <ul>
+            {availiableTimes.map((time) => (
+              <li>
+                <span>{time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className='worker-times-container'>
+          <h3>Avaliable Worker Times</h3>
+          <ul>
+            {availiableWorkerTimes.map((time) => (
+              <li>
+                <span>{time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
