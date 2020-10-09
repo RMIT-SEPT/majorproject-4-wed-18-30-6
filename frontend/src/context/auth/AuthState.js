@@ -56,6 +56,15 @@ const AuthState = (props) => {
 	],
 	availiableTimes: [],
 	availiableWorkerTimes: [],
+	appointments: [
+		{
+			date: "2020-10-03 15:00",
+			finish_date: "2020-10-03 15:30",
+			customer_name: "Jacob Kumar",
+			contact_number: "042xxxxxx",
+			task: "Cleaning"
+		}
+	],
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -271,6 +280,10 @@ const AuthState = (props) => {
     //
   };
 
+  const loadAppointments = async (service, worker) => {
+    //
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -284,6 +297,7 @@ const AuthState = (props) => {
 		services: state.services,
 		availiableTimes: state.availiableTimes,
 		availiableWorkerTimes: state.availiableWorkerTimes,
+		appointments: state.appointments,
         loadUser,
         registerAdmin,
         registerCustomer,
@@ -296,7 +310,8 @@ const AuthState = (props) => {
         getBookings,
 		getServices,
 		loadAvaliableTimes,
-		loadAvaliableWorkerTimes
+		loadAvaliableWorkerTimes,
+		loadAppointments,
       }}
     >
       {props.children}

@@ -716,3 +716,72 @@ h2.transform .small {
   background-color: #666666;
   border: solid 2px #777978;
 }
+
+/* ROSTER PAGE */
+
+.roster .content {
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roster {
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roster-item {
+  width: 100%;
+  height: 75px;
+  border: solid 2px #767a77;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.roster-item .date {
+  display: inline-block;
+  width: 75px;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-right: solid 1px #c3c9c5;
+  border-radius: 0px;
+}
+
+.roster-item .date .month {
+  width: 100%;
+  position: absolute;
+  font-size: 18px;
+  top: calc(25% - 9px);
+  display: block;
+  text-align: center;
+}
+
+.roster-item .date .day {
+  width: 100%;
+  position: absolute;
+  font-size: 18px;
+  top: calc(75% - 18px);
+  display: block;
+  text-align: center;
+}
+
+.roster-item .data {
+  display: inline-block;
+  width: calc(100% - 80px);
+}
+
+.roster-item .data ul {
+  display: inline-block;
+  width: 40%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -4px;
+}
