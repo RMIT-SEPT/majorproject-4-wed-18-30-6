@@ -30,8 +30,8 @@ const setAuthToken = (token) => {
 
 const AuthState = (props) => {
   const initialState = {
-    isAuthenticated: true,
-    user: {},
+    isAuthenticated: false,
+    user: null,
     loading: false,
     error: null,
     upcoming_bookings: [],
@@ -53,24 +53,16 @@ const AuthState = (props) => {
         name: "Cleaners",
         image: "images/cleaner.jpg",
       },
-	],
-	availiableTimes: [],
-	availiableWorkerTimes: [],
-	appointments: [
-		{
-			date: "2020-10-03 15:00",
-			finish_date: "2020-10-03 15:30",
-			customer_name: "Jacob Kumar",
-			contact_number: "042xxxxxx",
-			task: "Cleaning"
-		}
-	],
+    ],
+    availiableTimes: [],
+    availiableWorkerTimes: [],
+    appointments: [],
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
-	return;
+    return;
 
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -294,10 +286,10 @@ const AuthState = (props) => {
         user: state.user,
         upcoming_bookings: state.upcoming_bookings,
         past_bookings: state.past_bookings,
-		services: state.services,
-		availiableTimes: state.availiableTimes,
-		availiableWorkerTimes: state.availiableWorkerTimes,
-		appointments: state.appointments,
+        services: state.services,
+        availiableTimes: state.availiableTimes,
+        availiableWorkerTimes: state.availiableWorkerTimes,
+        appointments: state.appointments,
         loadUser,
         registerAdmin,
         registerCustomer,
@@ -308,10 +300,10 @@ const AuthState = (props) => {
         createBooking,
         cancelBooking,
         getBookings,
-		getServices,
-		loadAvaliableTimes,
-		loadAvaliableWorkerTimes,
-		loadAppointments,
+        getServices,
+        loadAvaliableTimes,
+        loadAvaliableWorkerTimes,
+        loadAppointments,
       }}
     >
       {props.children}

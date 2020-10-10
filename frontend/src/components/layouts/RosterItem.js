@@ -44,7 +44,8 @@ const RosterItem = ({ appointment }) => {
   };
 
   var getDayFromDate = () => {
-    return new Date(date).getDate();
+    var d = new Date(date);
+    return "" + d.getDate();
   };
 
   var getTimeFromDate = (dd) => {
@@ -60,7 +61,7 @@ const RosterItem = ({ appointment }) => {
     <div className='roster-item'>
       <div className='date'>
         <span className='month'>{getMonthFromDate()}</span>
-        <span className='day'>{getDayFromDate}</span>
+        <span className='day'>{getDayFromDate()}</span>
       </div>
       <div className='data'>
         <ul>
