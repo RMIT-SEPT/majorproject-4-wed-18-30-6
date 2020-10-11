@@ -12,6 +12,7 @@ import RegisterCustomer from "./components/pages/register/RegisterCustomer";
 import RegisterEmployee from "./components/pages/register/RegisterEmployee";
 import Dashboard from "./components/pages/admin/Dashboard";
 import Details from "./components/pages/user/Details";
+import Roster from "./components/pages/roster/Roster";
 import Bookings from "./components/pages/bookings/Bookings";
 import Book from "./components/pages/bookings/Book";
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path='/register' component={Register} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/user/details' component={Details} />
+            <Route exact path='/user/roster' component={Roster} />
             <Route exact path='/book' component={Book} />
             <Route exact path='/bookings' component={Bookings} />
           </Switch>

@@ -22,6 +22,9 @@ const Navbar = ({ title, icon }) => {
           <span className='hide-sm'>Logout</span>
         </a>
       </li>
+      <li>
+        <Link to='/dashboard'>Dashboard</Link>
+      </li>
     </Fragment>
   );
 
