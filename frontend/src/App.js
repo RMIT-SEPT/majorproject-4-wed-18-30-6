@@ -4,18 +4,18 @@ import "./App.css";
 
 import Navbar from "./components/layouts/Navbar";
 
-import Home from "./components/pages/Home";
-import Login from "./components/pages/login/Login";
-import Register from "./components/pages/register/Register";
-import RegisterAdmin from "./components/pages/register/RegisterAdmin";
-import RegisterCustomer from "./components/pages/register/RegisterCustomer";
-import RegisterEmployee from "./components/pages/register/RegisterEmployee";
-import Dashboard from "./components/pages/admin/Dashboard";
-import Details from "./components/pages/user/Details";
-import Bookings from "./components/pages/bookings/Bookings";
-import Book from "./components/pages/bookings/Book";
+import Home from "./components/pages/Home.js";
+import Login from "./components/pages/login/Login.js";
+import Register from "./components/pages/register/Register.js";
+import RegisterAdmin from "./components/pages/register/RegisterAdmin.js";
+import RegisterCustomer from "./components/pages/register/RegisterCustomer.js";
+import RegisterEmployee from "./components/pages/register/RegisterEmployee.js";
+import Dashboard from "./components/pages/admin/Dashboard.js";
+import Details from "./components/pages/user/Details.js";
+import Bookings from "./components/pages/bookings/Bookings.js";
+import Book from "./components/pages/bookings/Book.js";
 
-import AuthState from "./context/auth/AuthState";
+import AuthState from "./context/auth/AuthState.js";
 
 const App = () => {
   return (
