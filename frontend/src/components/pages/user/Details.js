@@ -6,16 +6,34 @@ import InputForm from "../../layouts/InputForm";
 const Details = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, updateUserDetails } = authContext;
+  const {
+    error,
+    clearErrors,
+    loading,
+    isAuthenticated,
+    loadUser,
+    updateUserDetails,
+  } = authContext;
 
   useEffect(() => {
+    loadUser();
+
+    if (loading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      props.history.push("/");
+      return;
+    }
+
     if (error !== "" && error !== undefined && error !== null) {
       alert(error);
       clearErrors();
     }
 
     // eslint-disable-next-line
-  }, [error, props.history]);
+  }, [isAuthenticated, error, props.history]);
 
   const [details, setDetails] = useState({
     first_name: "",

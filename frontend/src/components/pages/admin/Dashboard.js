@@ -42,7 +42,7 @@ const Dashboard = (props) => {
             {
               name: "Roster",
               image: "",
-              link: "/",
+              link: "/user/roster",
             },
             {
               name: "Today's Schedule",
@@ -85,7 +85,7 @@ const Dashboard = (props) => {
             {
               name: "My Roster",
               image: "",
-              link: "/",
+              link: "/user/roster",
             },
             {
               name: "Today's Schedule",

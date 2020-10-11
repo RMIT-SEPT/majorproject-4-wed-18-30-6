@@ -4,16 +4,17 @@ import "./App.css";
 
 import Navbar from "./components/layouts/Navbar";
 
-import Home from "./components/pages/Home.js";
-import Login from "./components/pages/login/Login.js";
-import Register from "./components/pages/register/Register.js";
-import RegisterAdmin from "./components/pages/register/RegisterAdmin.js";
-import RegisterCustomer from "./components/pages/register/RegisterCustomer.js";
-import RegisterEmployee from "./components/pages/register/RegisterEmployee.js";
-import Dashboard from "./components/pages/admin/Dashboard.js";
-import Details from "./components/pages/user/Details.js";
-import Bookings from "./components/pages/bookings/Bookings.js";
-import Book from "./components/pages/bookings/Book.js";
+import Home from "./components/pages/Home";
+import Login from "./components/pages/login/Login";
+import Register from "./components/pages/register/Register";
+import RegisterAdmin from "./components/pages/register/RegisterAdmin";
+import RegisterCustomer from "./components/pages/register/RegisterCustomer";
+import RegisterEmployee from "./components/pages/register/RegisterEmployee";
+import Dashboard from "./components/pages/admin/Dashboard";
+import Details from "./components/pages/user/Details";
+import Roster from "./components/pages/roster/Roster";
+import Bookings from "./components/pages/bookings/Bookings";
+import Book from "./components/pages/bookings/Book";
 
 import AuthState from "./context/auth/AuthState.js";
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path='/register' component={Register} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/user/details' component={Details} />
+            <Route exact path='/user/roster' component={Roster} />
             <Route exact path='/book' component={Book} />
             <Route exact path='/bookings' component={Bookings} />
           </Switch>
