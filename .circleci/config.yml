@@ -59,9 +59,9 @@ workflows:
               only: master
 
       - aws-ecr/build-and-push-image:
-          account-url: $AWS_ECR_ACCOUNT_URL
+          account-url: 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306
           repo: '${MY_APP_PREFIX}'
-          region: $AWS_REGION
+          region: us-east-1
           tag: '${CIRCLE_SHA1}'
 
       - aws-ecs/deploy-service-update:
