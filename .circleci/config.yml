@@ -56,12 +56,10 @@ workflows:
       - aws-ecr/build-and-push-image:
           requires:
             - build_and_deploy
-          account-url: AWS_ECR_ACCOUNT_URL
           repo: 'wed18306'
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           tag: 'latest'
+          dockerfile: DockerFile
+          path: ./backend
 
       - aws-ecs/deploy-service-update:
           requires:
