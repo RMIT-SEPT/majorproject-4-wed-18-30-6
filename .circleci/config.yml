@@ -16,11 +16,11 @@ jobs:
       - checkout:
           path: ~/wed1830-group6
       - setup_remote_docker
-      - run:
-          name: Setup common environment variables
-          command: |
-            echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
-            echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:latest"' >> $BASH_ENV
+      # - run:
+      #     name: Setup common environment variables
+      #     command: |
+      #       echo 'export ECR_REPOSITORY_NAME="${AWS_RESOURCE_NAME_PREFIX}"' >> $BASH_ENV
+      #       echo 'export FULL_IMAGE_NAME="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:latest"' >> $BASH_ENV
 
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
@@ -45,11 +45,15 @@ jobs:
             path: target/userservice-0.0.1-SNAPSHOT.jar
         # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
 
-      - aws-cli/install
-      - aws-cli/configure:
-          aws-access-key-id: $AWS_ACCESS_KEY_ID
-          aws-region: $AWS_REGION
-          
+      - run:
+          name: Build image
+          command: |
+            docker build -t $FULL_IMAGE_NAME .
+      - run:
+          name: Push image
+          command: |
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 594973024332.dkr.ecr.us-east-1.amazonaws.com
+            docker push $FULL_IMAGE_NAME
 workflows:
   build-deploy-qa:
     jobs:
@@ -57,16 +61,3 @@ workflows:
           filters:
             branches:
               only: master
-
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          repo: '${MY_APP_PREFIX}'
-          region: AWS_REGION
-          tag: '${CIRCLE_SHA1}'
-
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: '${MY_APP_PREFIX}-service'
-          cluster-name: '${MY_APP_PREFIX}-cluster'
-          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
