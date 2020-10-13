@@ -17,34 +17,66 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @Autowired
-    private AuthService firebaseService;
+	@Autowired
+	private AuthService firebaseService;
 
-    @GetMapping("/")
-    public String hello() {
-        return "hello";
-    }
+	@GetMapping("/")
+	public String hello() {
+		return "hello";
+	}
 
-    @GetMapping("/user/get/details")
-    public User getUserDetails(@RequestHeader() String username) throws InterruptedException, ExecutionException{
-        return firebaseService.getUserDetail(username);        
-    }
+	@GetMapping("/user/get/details")
+	public User getUserDetails(@RequestHeader() String username) {
+		try {
+			return firebaseService.getUserDetail(username);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 
-    @GetMapping("/updateuserdetails")
-    public User updateUserDetails(@RequestBody() User user) throws InterruptedException, ExecutionException{
-        return firebaseService.updateUserDetails(user);        
-    }
+		return null;
+	}
 
-    @PostMapping("/register")
-    public User registerEndpoint(@RequestBody User user) throws InterruptedException, ExecutionException{
-        return firebaseService.register(user);
-    }
+	@GetMapping("/updateuserdetails")
+	public User updateUserDetails(@RequestBody() User user) {
+		try {
+			return firebaseService.updateUserDetails(user);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String loginEndpoint(@RequestBody String username, String pass) throws InterruptedException, ExecutionException{
-        firebaseService.login(username, pass);
-        return UUID.randomUUID().toString();
+		return null;
+	}
+
+	@PostMapping("/register")
+	public User registerEndpoint(@RequestBody User user) {
+		try {
+			return firebaseService.register(user);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@PostMapping("/login")
+	@ResponseBody
+	public String loginEndpoint(@RequestBody String username, String pass) {
+		try {
+			firebaseService.login(username, pass);
+			return UUID.randomUUID().toString();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		return "";
     }
 
 
