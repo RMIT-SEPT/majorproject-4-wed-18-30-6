@@ -9,8 +9,6 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk
     environment:
-      ECR_REPOSITORY_NAME: wed18306
-      FULL_IMAGE_NAME: 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306
     steps:
       - checkout:
           path: ~/wed1830-group6
@@ -48,12 +46,12 @@ jobs:
       - run:
           name: Build image
           command: |
-            docker build -t $FULL_IMAGE_NAME .
+            docker build -t 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306 .
       - run:
           name: Push image
           command: |
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 885410169496.dkr.ecr.us-east-1.amazonaws.com
-            docker push $FULL_IMAGE_NAME
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 885410169496.dkr.ecr.us-east-1.amazonaws.com/web18306
+            docker push 885410169496.dkr.ecr.us-east-1.amazonaws.com/wed18306:latest
 workflows:
   build-deploy-qa:
     jobs:
