@@ -66,18 +66,30 @@ public class UserController {
 
 	@PostMapping("/login")
 	@ResponseBody
-	public String loginEndpoint(@RequestBody String username, String pass) {
+	public User loginEndpoint(@RequestBody String username, String pass) {
 		try {
-			firebaseService.login(username, pass);
-			return UUID.randomUUID().toString();
+			return firebaseService.login(username, pass);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		return "";
+		return null;
     }
 
+	@PostMapping("/load")
+	@ResponseBody
+	public User loadEndpoint(@RequestBody String logintoken) {
+		try {
+			return firebaseService.getLogin(logintoken);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+    }
 
 }

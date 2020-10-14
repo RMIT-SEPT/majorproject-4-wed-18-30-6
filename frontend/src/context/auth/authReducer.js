@@ -19,15 +19,6 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
-    case REGISTER_SUCCESS:
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...action.payload,
-        isAuthenticated: true,
-        loading: false,
-        error: null,
-      };
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case REGISTER_FAIL:
@@ -60,6 +51,8 @@ export default (state, action) => {
         upcoming_bookings: action.payload.upcoming_bookings,
         past_bookings: action.payload.past_bookings,
       };
+	case LOGIN_SUCCESS:
+	case REGISTER_SUCCESS:
     case USER_LOADED:
       return {
         ...state,

@@ -16,17 +16,25 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
-    public String login(String username, String pass) throws ExecutionException, InterruptedException {
+    public User login(String username, String pass) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> apiFuture = dbFirestore.collection("users").document(username).get();
         DocumentSnapshot documentSnapshot = apiFuture.get();
         User log = documentSnapshot.toObject(User.class);
 
         if(log.getPassword() == pass){
-            return documentSnapshot.getUpdateTime().toString();
-        } else {
-            return "Wrong username/password";
-        }
-        
+			log.setLoginToken(documentSnapshot.getUpdateTime().toString());
+            return log;
+		}
+		
+        return null;
+    }
+
+    public User getLogin(String logintoken) throws ExecutionException, InterruptedException {
+        ApiFuture<DocumentSnapshot> apiFuture = dbFirestore.collection("users").document(logintoken).get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
+        User log = documentSnapshot.toObject(User.class);
+		
+        return log;
     }
 
     public User register(User user) throws InterruptedException, ExecutionException {

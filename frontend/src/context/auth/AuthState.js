@@ -62,13 +62,11 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
-    return;
-
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
     try {
-      const res = await axios.get("/auth");
+      const res = await axios.get("/load");
 
       dispatch({
         type: USER_LOADED,
@@ -77,7 +75,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -101,7 +99,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -125,7 +123,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -149,7 +147,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -162,7 +160,9 @@ const AuthState = (props) => {
     };
 
     try {
-      const res = await axios.post("/login", formData, config);
+	  const res = await axios.post("/login", formData, config);
+	  
+	  localStorage.token = res.data.logintoken;
 
       dispatch({
         type: LOGIN_SUCCESS,
@@ -171,7 +171,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -205,7 +205,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: BOOKINGS_CREATE_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -227,7 +227,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: BOOKINGS_CANCEL_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -243,7 +243,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: BOOKINGS_LOAD_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
@@ -259,7 +259,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: BOOKINGS_LOAD_FAIL,
-        payload: err.response.data.msg,
+        payload: err,
       });
     }
   };
