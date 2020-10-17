@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+    //firestore
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
     public User login(String username, String pass) throws ExecutionException, InterruptedException {
