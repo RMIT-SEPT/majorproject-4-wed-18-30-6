@@ -7,7 +7,7 @@ import HomeLink from "../layouts/HomeLink";
 const Home = () => {
   const authContext = useContext(AuthContext);
 
-  const { services, loadUser, getServices } = authContext;
+  const { loading, isAuthenticated, services, loadUser, getServices } = authContext;
 
   useEffect(() => {
     if (loading) {
