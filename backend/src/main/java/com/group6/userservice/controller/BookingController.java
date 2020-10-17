@@ -3,7 +3,7 @@ package com.group6.userservice.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.group6.userservice.models.Bookings;
 import com.group6.userservice.service.BookingService;
 import com.group6.userservice.user.User;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class BookingController {
 	@Autowired
 	BookingService service;
