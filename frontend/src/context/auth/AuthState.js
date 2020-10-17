@@ -88,6 +88,7 @@ const AuthState = (props) => {
     };
 
     formData.role = "admin";
+	formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
@@ -112,6 +113,7 @@ const AuthState = (props) => {
     };
 
     formData.role = "customer";
+	formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
@@ -135,7 +137,8 @@ const AuthState = (props) => {
       },
     };
 
-    formData.role = "employee";
+	formData.role = "employee";
+	formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
