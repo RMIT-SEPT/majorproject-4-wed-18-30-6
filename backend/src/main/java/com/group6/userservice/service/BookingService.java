@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingService {
 
-    @Autowired
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
     public boolean createBooking(Bookings book) throws InterruptedException, ExecutionException {
