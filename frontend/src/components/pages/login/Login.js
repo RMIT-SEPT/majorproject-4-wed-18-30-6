@@ -7,14 +7,21 @@ import { Link } from "react-router-dom";
 const Login = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { error, clearErrors, loading, loadUser, isAuthenticated, login } = authContext;
+  const {
+    error,
+    clearErrors,
+    loading,
+    loadUser,
+    isAuthenticated,
+    login,
+  } = authContext;
 
   useEffect(() => {
     if (loading) {
       if (!isAuthenticated) loadUser();
       return;
     }
-	
+
     if (isAuthenticated) {
       props.history.push("/");
     }
@@ -36,15 +43,15 @@ const Login = (props) => {
     type: "",
   });
 
-  const { email, password } = user;
+  const { username, password } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (email === "") {
-      alert("Please enter in the email!");
+    if (username === "") {
+      alert("Please enter in the username!");
       return;
     }
     if (password === "") {
@@ -53,7 +60,7 @@ const Login = (props) => {
     }
 
     login({
-      email,
+      username,
       password,
     });
   };
@@ -69,9 +76,9 @@ const Login = (props) => {
 
       <form onSubmit={onSubmit}>
         <InputForm
-          name='email'
-          type='email'
-          header='Email'
+          name='username'
+          type='test'
+          header='Username'
           onChange={onChange}
         />
         <InputForm
