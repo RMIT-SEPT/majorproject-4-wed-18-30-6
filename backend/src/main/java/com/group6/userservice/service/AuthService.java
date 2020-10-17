@@ -22,7 +22,7 @@ public class AuthService {
         User log = documentSnapshot.toObject(User.class);
 
         if(log.getPassword() == pass){
-			log.setLoginToken(documentSnapshot.getUpdateTime().toString());
+			log.setLogintoken(documentSnapshot.getUpdateTime().toString());
             return log;
 		}
 		
