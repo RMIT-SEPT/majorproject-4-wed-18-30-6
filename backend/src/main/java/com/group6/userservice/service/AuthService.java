@@ -9,11 +9,15 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import com.group6.userservice.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+    //firestore
+    
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
     public User login(String username, String pass) throws ExecutionException, InterruptedException {
