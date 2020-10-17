@@ -18,10 +18,11 @@ import com.group6.userservice.models.Bookings;
 import com.group6.userservice.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.annotation.PostConstruct;
 
 @Service
 public class BookingService {
-
+    
     Firestore dbFirestore = FirestoreClient.getFirestore();
 
     public boolean createBooking(Bookings book) throws InterruptedException, ExecutionException {
