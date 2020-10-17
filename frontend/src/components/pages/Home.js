@@ -10,7 +10,11 @@ const Home = () => {
   const { services, loadUser, getServices } = authContext;
 
   useEffect(() => {
-    loadUser();
+    if (loading) {
+      if (!isAuthenticated) loadUser();
+      return;
+	}
+	
     getServices();
 
     // eslint-disable-next-line

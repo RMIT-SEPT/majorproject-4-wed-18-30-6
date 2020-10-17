@@ -17,9 +17,8 @@ const Dashboard = (props) => {
   const { type, links } = dashboard;
 
   useEffect(() => {
-    loadUser();
-
     if (loading) {
+      if (!isAuthenticated) loadUser();
       return;
     }
 

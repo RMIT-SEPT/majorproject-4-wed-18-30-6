@@ -17,9 +17,8 @@ const Book = (props) => {
   } = authContext;
 
   useEffect(() => {
-    loadUser();
-
     if (loading) {
+      if (!isAuthenticated) loadUser();
       return;
     }
 

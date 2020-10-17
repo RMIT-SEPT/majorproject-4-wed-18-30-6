@@ -29,9 +29,8 @@ const Bookings = (props) => {
   };
 
   useEffect(() => {
-    loadUser();
-
     if (loading) {
+      if (!isAuthenticated) loadUser();
       return;
     }
 

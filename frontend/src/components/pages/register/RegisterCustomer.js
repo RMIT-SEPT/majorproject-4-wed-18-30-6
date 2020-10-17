@@ -16,9 +16,8 @@ const Register = (props) => {
   } = authContext;
 
   useEffect(() => {
-    loadUser();
-
     if (loading) {
+      if (!isAuthenticated) loadUser();
       return;
     }
 

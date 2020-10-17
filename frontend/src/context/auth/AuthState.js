@@ -62,11 +62,23 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loadUser = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
     if (localStorage.token) {
+      if (localStorage.token === "") return;
       setAuthToken(localStorage.token);
-    }
+    } else return;
+
     try {
-      const res = await axios.get("/load");
+      const res = await axios.post(
+        "/load",
+        { logintoken: localStorage.token },
+        config
+      );
 
       dispatch({
         type: USER_LOADED,
@@ -88,7 +100,7 @@ const AuthState = (props) => {
     };
 
     formData.role = "admin";
-	formData.logintoken = "";
+    formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
@@ -113,7 +125,7 @@ const AuthState = (props) => {
     };
 
     formData.role = "customer";
-	formData.logintoken = "";
+    formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
@@ -137,8 +149,8 @@ const AuthState = (props) => {
       },
     };
 
-	formData.role = "employee";
-	formData.logintoken = "";
+    formData.role = "employee";
+    formData.logintoken = "";
 
     try {
       const res = await axios.post("/register", formData, config);
@@ -163,9 +175,9 @@ const AuthState = (props) => {
     };
 
     try {
-	  const res = await axios.post("/login", formData, config);
-	  
-	  localStorage.token = res.data.logintoken;
+      const res = await axios.post("/login", formData, config);
+
+      localStorage.token = res.data.logintoken;
 
       dispatch({
         type: LOGIN_SUCCESS,
