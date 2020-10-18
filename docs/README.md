@@ -17,3 +17,7 @@ Depending on how you want to deploy, you may want to choose one of these 3 optio
 
 ### Frontend Setup
 After deploying the backend, you may deploy the frontend.
+
+To test the frontend you will want to make sure your shell is located within the frontend folder. Use 'cd' if not. Run the frontend by calling 'npm run dev', this will start a local instance of react where you can run the website on your own machine.
+
+To deploy the frontend to heroku follow the following tutorial https://devcenter.heroku.com/articles/git and then call 'git push heroku master'. The frontend will now be deployed on heroku.
